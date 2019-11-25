@@ -1,0 +1,15 @@
+{
+  "name": "d_bot",
+  "version": "1.0.0",
+  "description": "bot for discord",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Classified006",
+  "license": "ISC",
+  "dependencies": {
+    "discord-youtube-api": "^0.1.0",
+    "discord.js": "^11.5.1"
+  }
+}
