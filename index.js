@@ -9,7 +9,7 @@ const ytdl = require('ytdl-core');
 const youtube = new YouTube(GOOGLE_API_KEY);
 const queue = new Map();
 
-var version ='1.0.1';
+var version ='1.0.2';
 
 bot.on('ready', () =>{
     console.log('This bot is born today!');
@@ -73,11 +73,12 @@ Please provide a value to select one of the search results ranging from 1-10.
 							time: 10000,
 							errors: ['time']
 						});
+						const videoIndex = parseInt(response.first().content);
 					} catch (err) {
 						console.error(err);
 						return msg.channel.send('No or invalid value entered, cancelling video selection.');
 					}
-					const videoIndex = parseInt(response.first().content);
+					//const videoIndex = parseInt(response.first().content);
 					var nvideo = await youtube.getVideoByID(videos[videoIndex - 1].id);
 				} catch (err) {
 					console.error(err);
