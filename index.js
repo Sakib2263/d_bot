@@ -9,7 +9,7 @@ const ytdl = require('ytdl-core');
 const youtube = new YouTube(GOOGLE_API_KEY);
 const queue = new Map();
 
-var version ='1.0.2';
+var version ='1.1.0';
 
 var GphApiClient = require('giphy-js-sdk-core');
 giphy = GphApiClient("OnxCLB1jjGwiYkBCTjPHjJZEBjlMsCvf");
