@@ -46,27 +46,6 @@ bot.on('message', async msg=>{
 
 	let command = msg.content.toLowerCase().split(' ')[0];
 	command = command.slice(PREFIX.length);
-
-/*if(msg.member.hasPermission(['KICK_MEMBERS', 'BAN_MEMBERS'])){
-	if(msg.content.startsWith(`${PREFIX}kick`)){
-		//msg.channel.send('kick');
-		let member = msg.mentions.members.first();
-		member.kick().then((member) => {
-
-			giphy.search('gifs', {"q": "Kick out"})
-			.then((response) =>{
-				var totalResponses = response.data.length;
-				var responseIndex = Math.floor((Math.random() * 10) +1)% totalResponses;
-				var responseFinal = response.data[responseIndex];
-				MessageChannel.channel.send(":wave: " + member.displayName + ' has been kicked!' , {
-					files: [responseFinal.images.fixed_height.url]
-				}).catch(() =>{
-					msg.channel.send('UuggghhH!! Cannot find anything relatable!');
-				});
-			});
-		});
-	}
-}*/
 	if (command === 'play') {
 		const voiceChannel = msg.member.voiceChannel;
 		if (!voiceChannel) return msg.channel.send('I\'m sorry but you need to be in a voice channel to play music!');
