@@ -17,7 +17,7 @@ bot.on('ready', () =>{
 
 bot.on('message', async msg=>{
 
-    if(msg.content === "Hello" || msg.content === "hello"|| msg.content === "HELLO"|| msg.content === "hola"|| msg.content === "hello." ){
+    if(msg.content === "Hello" || msg.content === "hello"|| msg.content === "hi"|| msg.content === "hola"|| msg.content === "hello." ){
         msg.reply('Hello I am Classified006 from area 51!');
     }
     else if(msg.content==="moshi moshi" || msg.content === "moshi mosh"){
@@ -33,7 +33,7 @@ bot.on('message', async msg=>{
 	const serverQueue = queue.get(msg.guild.id);
 
 	let command = msg.content.toLowerCase().split(' ')[0];
-	command = command.slice(PREFIX.length)
+	command = command.slice(PREFIX.length);
 
 	if (command === 'play') {
 		const voiceChannel = msg.member.voiceChannel;
@@ -78,13 +78,13 @@ Please provide a value to select one of the search results ranging from 1-10.
 						return msg.channel.send('No or invalid value entered, cancelling video selection.');
 					}
 					const videoIndex = parseInt(response.first().content);
-					var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
+					var nvideo = await youtube.getVideoByID(videos[videoIndex - 1].id);
 				} catch (err) {
 					console.error(err);
 					return msg.channel.send('🆘 I could not obtain any search results.');
 				}
 			}
-			return handleVideo(video, msg, voiceChannel);
+			return handleVideo(nvideo, msg, voiceChannel);
 		}
 	} else if (command === 'skip') {
 		if (!msg.member.voiceChannel) return msg.channel.send('You are not in a voice channel!');
@@ -132,10 +132,10 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
 
     switch(args[0]){
         case 'ping':
-                msg.channel.sendMessage('pong!')
+                msg.channel.sendMessage('pong!');
             break;
         case 'youtube':
-                msg.channel.sendMessage('youtube.com')
+                msg.channel.sendMessage('youtube.com');
             break;
         case 'info':
             if(args[1]=== 'version'){
@@ -144,7 +144,7 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
                 msg.channel.sendMessage('Command not taught!!');
             }break;
         case 'clear':
-            if(!args[1]) return msg.reply('Define second argument - number of msgs to remove!')
+            if(!args[1]) return msg.reply('Define second argument - number of msgs to remove!');
             msg.channel.bulkDelete(args[1]);
             break;        
 
@@ -178,6 +178,9 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
 		} catch (error) {
 			console.error(`I could not join the voice channel: ${error}`);
 			queue.delete(msg.guild.id);
+			var connection2 = await voiceChannel.join();
+			queueConstruct.connection2 = connection2;
+			play(msg.guild, queueConstruct.songs[0]);
 			return msg.channel.send(`I could not join the voice channel: ${error}`);
 		}
 	} else {
