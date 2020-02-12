@@ -16,12 +16,14 @@ giphy = GphApiClient(giphyToken);
 
 
 bot.on('ready', () =>{
-    console.log('This bot is born today!');
+    console.log('I\'m Ready to go!');
 });
 
+// This part should work..but doesn't for some reason -- Should show msg on new member add
 bot.on('guildMemberAdd', member=>{
 	msg.channel.send('We\'ve been waiting for you ' + member);
 });
+//Same here - should show msg on removing member from channel 
 bot.on('guildMemberRemove', member=>{
 	msg.channel.send('We will miss you ' + member);
 });
@@ -46,6 +48,7 @@ bot.on('message', async msg=>{
 
 	let command = msg.content.toLowerCase().split(' ')[0];
 	command = command.slice(PREFIX.length);
+
 	if (command === 'play') {
 		const voiceChannel = msg.member.voiceChannel;
 		if (!voiceChannel) return msg.channel.send('I\'m sorry but you need to be in a voice channel to play music!');
@@ -250,6 +253,5 @@ function play(guild, song) {
 
 	serverQueue.textChannel.send(`🎶 Start playing: **${song.title}**`);
 }
-
 
 bot.login(TOKEN);
